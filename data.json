@@ -1,0 +1,25 @@
+{
+    "contacts":
+    [
+        {
+            "FullName": "Tony Stark",
+            "ContactNumber": "4165555555",
+            "EmailAddress": "ironman@avengers.com"   
+        },
+        {
+            "FullName": "Peter Parker",
+            "ContactNumber": "4165555551",
+            "EmailAddress": "spiderman@avengers.com"   
+        },
+        {
+            "FullName": "Bruce Banner",
+            "ContactNumber": "4165555552",
+            "EmailAddress": "thehulk@avengers.com"   
+        },
+        {
+            "FullName": "Steve Rogers",
+            "ContactNumber": "4165555553",
+            "EmailAddress": "captainamerica@avengers.com"   
+        }
+    ]
+}

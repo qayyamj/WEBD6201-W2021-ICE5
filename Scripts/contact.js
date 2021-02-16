@@ -68,10 +68,17 @@
     toJSON()
     {
       return {
-        "fullName": this.FullName,
-        "contactNumber": this.ContactNumber,
-        "emailAddress": this.EmailAddress
+        "FullName": this.FullName,
+        "ContactNumber": this.ContactNumber,
+        "EmailAddress": this.EmailAddress
       }
+    }
+
+    fromJSON(JSONData)
+    {
+      this.FullName = JSONData.FullName;
+      this.ContactNumber = JSONData.ContactNumber;
+      this.EmailAddress = JSONData.EmailAddress;
     }
 
     /**
