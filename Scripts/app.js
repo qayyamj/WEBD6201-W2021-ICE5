@@ -163,12 +163,12 @@
 
     function displayContactList() 
     {
-      // AJAX
+      // AJAX Example
       // STEP 1 - Create XHR object
       let XHR = new XMLHttpRequest();
 
       // STEP 2 - Open the Request
-      XHR.open("GET", "data.json");
+      XHR.open("GET", "./Data/data.json");
 
       // STEP 3 - Send information to the server
       XHR.send();
@@ -200,12 +200,12 @@
             contactIndex++;
           }
 
-          console.log(dataString);
+         // console.log(dataString);
         }
       });
 
 
-      
+
       if (localStorage.length > 0) 
       {
         let contactList = document.getElementById("contactList");
