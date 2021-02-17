@@ -1,8 +1,10 @@
 "use strict";
 // Contact Class
 
-((core)=>{
-  class Contact {
+((core)=>
+{
+  class Contact 
+  {
     // getters and setters
     get FullName() 
     {
@@ -37,6 +39,7 @@
     // constructor
 
     /**
+     * Creates an instace of Contact
      * @param {string} fullName 
      * @param {string} contactNumber 
      * @param {string} emailAddress 

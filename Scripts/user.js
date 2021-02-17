@@ -1,6 +1,8 @@
 "use strict";
 // User Class
-((core)=>{
+
+((core)=>
+{
   class User 
   {
     // getters and setters
@@ -48,10 +50,10 @@
 
     /**
      * Creates an instance of User.
-     * @param {string} [displayName=""]
-     * @param {string} [emailAddress=""]
-     * @param {string} [username=""]
-     * @param {string} [password=""]
+     * @param {string} displayName
+     * @param {string} emailAddress
+     * @param {string} username
+     * @param {string} password
      */
     constructor(displayName = "", emailAddress = "", username = "", password ="") 
     {
@@ -88,7 +90,7 @@
     }
 
     /**
-     * Convert a JSON Data object to a User
+     * Convert a JSON data object to a User property
      *
      * @param {Object} JSONData
      */
@@ -113,7 +115,7 @@
       }
       else 
       {
-        console.error("One or more properties of the Contact is empty");
+        console.error("One or more properties of the User is empty");
         return null;
       }
     }

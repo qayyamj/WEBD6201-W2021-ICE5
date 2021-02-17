@@ -218,6 +218,7 @@
       {
         location.href = "login.html";
       }
+
       // // AJAX Example
       // // STEP 1 - Create XHR object
       // let XHR = new XMLHttpRequest();
@@ -258,10 +259,6 @@
       //    // console.log(dataString);
       //   }
       // });
-
-
-
-
     }
 
     function displayEdit()
