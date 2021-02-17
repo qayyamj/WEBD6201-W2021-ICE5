@@ -1,8 +1,8 @@
 "use strict";
 // User Class
-
 ((core)=>{
-  class User {
+  class User 
+  {
     // getters and setters
     get DisplayName() 
     {
@@ -26,12 +26,12 @@
 
     get UserName() 
     {
-      return this.m_username;
+      return this.m_userName;
     }
   
     set UserName(value) 
     {
-      this.m_username = value;
+      this.m_userName = value;
     }
 
     get Password() 
@@ -47,11 +47,13 @@
     // constructor
 
     /**
-     * @param {string} fullName 
-     * @param {string} contactNumber 
-     * @param {string} emailAddress 
+     * Creates an instance of User.
+     * @param {string} [displayName=""]
+     * @param {string} [emailAddress=""]
+     * @param {string} [username=""]
+     * @param {string} [password=""]
      */
-    constructor(displayName = "", emailAddress = "", username = "", password = "") 
+    constructor(displayName = "", emailAddress = "", username = "", password ="") 
     {
       this.DisplayName = displayName;
       this.EmailAddress = emailAddress;
@@ -62,16 +64,16 @@
     // methods
 
     /**
-     * This method overrides the built-in toString method for the Contact class
+     * This method overrides the built-in toString method for the User class
      *
      * @returns {string}
      */
     toString() 
     {
-      return `Display Name     : ${this.FullName} \nEmail Address : ${this.EmailAddress} \nUsername : ${this.UserName}`;
+      return `Display Name     : ${this.FullName} \nEmail Address : ${this.EmailAddress} \nUserName : ${this.UserName}`;
     }
 
-        /**
+    /**
      * This method returns a JSON object made up of the properties of the User class
      *
      * @returns {Object}
@@ -82,12 +84,13 @@
         "DisplayName": this.DisplayName,
         "EmailAddress": this.EmailAddress,
         "UserName": this.UserName
-      };
+      }
     }
 
     /**
-     * This method converts JSON objects to properties of the User Class
-     * @param {*} JSONData 
+     * Convert a JSON Data object to a User
+     *
+     * @param {Object} JSONData
      */
     fromJSON(JSONData)
     {
@@ -97,7 +100,6 @@
       this.Password = JSONData.Password;
     }
 
-
     /**
      * This method converts the User into a comma-separated value string
      *
@@ -105,19 +107,19 @@
      */
     serialize()
     {
-      if(this.DisplayName !== "" && this.EmailAddress !== "" && this.UserName != "")
+      if(this.DisplayName !== "" && this.EmailAddress !== "" && this.UserName !== "")
       {
         return `${this.DisplayName},${this.EmailAddress},${this.UserName}`;
       }
       else 
       {
-        console.error("One or more properties of the User is empty");
+        console.error("One or more properties of the Contact is empty");
         return null;
       }
     }
 
     /**
-     * This method takes a comma-separated data string and assigns the values to the User class properties
+     * This method takes a comma-separated data string and assigns the values to the Contact class properties
      *
      * @param {string} data
      * @return {void}
@@ -129,7 +131,6 @@
       this.EmailAddress = propertyArray[1];
       this.UserName = propertyArray[2];
     }
-
   }
 
   core.User = User;
