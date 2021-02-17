@@ -71,7 +71,7 @@
         "FullName": this.FullName,
         "ContactNumber": this.ContactNumber,
         "EmailAddress": this.EmailAddress
-      }
+      };
     }
 
     fromJSON(JSONData)
