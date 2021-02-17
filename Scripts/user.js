@@ -105,7 +105,7 @@
      */
     serialize()
     {
-      if(this.DisplayName !== "" && this.EmailAddress !== && this.UserName != "")
+      if(this.DisplayName !== "" && this.EmailAddress !== "" && this.UserName != "")
       {
         return `${this.DisplayName},${this.EmailAddress},${this.UserName}`;
       }
