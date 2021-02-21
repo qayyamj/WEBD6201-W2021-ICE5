@@ -54,7 +54,7 @@
         // update / modification
         //mainContent.firstElementChild.textContent = "Welcome Home!";
 
-        mainContent.innerHTML = `<h1 id="firstHeading">Welcome to WEBD6201 - ICE 5</h1>
+        mainContent.innerHTML = `<h1 id="firstHeading">Welcome to WEBD6201 - Lab 1</h1>
          <p id="paragraphOne" class="fs-3 fw-bold">This is my first Paragraph</p>
         `;
         
@@ -163,102 +163,61 @@
 
     function displayContactList() 
     {
-      if((sessionStorage.length > 0) && (sessionStorage.getItem("user")))
-        {
-          if (localStorage.length > 0) 
-          {
-            let contactList = document.getElementById("contactList");
-    
-            let data = "";
-    
-            let keys = Object.keys(localStorage);
-             
-            let index = 1;
-    
-            for (const key of keys) 
-            {
-              let contactData = localStorage.getItem(key);
-    
-              let contact = new core.Contact();
-              contact.deserialize(contactData);
-    
-              data += `<tr>
-              <th scope="row" class="text-center">${index}</th>
-              <td>${contact.FullName}</td>
-              <td>${contact.ContactNumber}</td>
-              <td>${contact.EmailAddress}</td>
-              <td class="text-center"><button value="${key}" class="btn btn-primary btn-sm edit"><i class="fas fa-edit fa-sm"></i> Edit</button></td>
-              <td class="text-center"><button value="${key}" class="btn btn-danger btn-sm delete"><i class="fas fa-trash-alt fa-sm"></i> Delete</button></td>
-              </tr>`;
-    
-              index++;
-            }
-    
-            contactList.innerHTML = data;
-    
-            $("button.edit").on("click", function(){
-              location.href = "edit.html#" + $(this).val();
-             });
-    
-             $("button.delete").on("click", function(){
-               if(confirm("Are you sure?"))
-               {
-                localStorage.removeItem($(this).val());
-               }
-               location.href = "contact-list.html"; // refresh the page
-             });
-    
-             $("#addButton").on("click", function() 
-             {
-              location.href = "edit.html";
-             });
-          }
-        }
-      else
+      if (sessionStorage.length > 0 && sessionStorage.getItem("user")) 
       {
+        {
+          let contactList = document.getElementById("contactList");
+
+          let data = "";
+
+          let keys = Object.keys(localStorage);
+
+          let index = 1;
+
+          for (const key of keys) {
+            let contactData = localStorage.getItem(key);
+
+            let contact = new core.Contact();
+            contact.deserialize(contactData);
+
+            data += `<tr>
+          <th scope="row" class="text-center">${index}</th>
+          <td>${contact.FullName}</td>
+          <td>${contact.ContactNumber}</td>
+          <td>${contact.EmailAddress}</td>
+          <td class="text-center"><button value="${key}" class="btn btn-primary btn-sm edit"><i class="fas fa-edit fa-sm"></i> Edit</button></td>
+          <td class="text-center"><button value="${key}" class="btn btn-danger btn-sm delete"><i class="fas fa-trash-alt fa-sm"></i> Delete</button></td>
+          </tr>`;
+
+            index++;
+          }
+
+          contactList.innerHTML = data;
+
+          $("button.edit").on("click", function () 
+          {
+            location.href = "edit.html#" + $(this).val();
+          });
+
+          $("button.delete").on("click", function () 
+          {
+            if (confirm("Are you sure?")) {
+              localStorage.removeItem($(this).val());
+            }
+            location.href = "contact-list.html"; // refresh the page
+          });
+
+          $("#addButton").on("click", function () 
+          {
+            location.href = "edit.html";
+          });
+        }
+      } 
+      else 
+      {
+        // redirect back to login page
         location.href = "login.html";
       }
-
-      // // AJAX Example
-      // // STEP 1 - Create XHR object
-      // let XHR = new XMLHttpRequest();
-
-      // // STEP 2 - Open the Request
-      // XHR.open("GET", "./Data/data.json");
-
-      // // STEP 3 - Send information to the server
-      // XHR.send();
-
-      // // STEP 4 - Create an event listener / handler
-      // XHR.addEventListener("readystatechange", function()
-      // {
-      //   // STEP 5 - Ensure that the server ReadyState is 4 and the server status is 200
-      //   if(XHR.readyState === 4 && XHR.status === 200)
-      //   {
-      //     let contactListData = JSON.parse(XHR.responseText);
-      //     let dataString = "";
-      //     let contactIndex = 1;
-
-      //     for (const contact of contactListData.contacts)
-      //     {
-      //       let newContact = new core.Contact();
-      //       newContact.fromJSON(newContact);
-
-      //       dataString += `<tr>
-      //       <th scope="row" class="text-center">${contactIndex}</th>
-      //       <td>${contact.FullName}</td>
-      //       <td>${contact.ContactNumber}</td>
-      //       <td>${contact.EmailAddress}</td>
-      //       <td class="text-center"><button value="${contactIndex}" class="btn btn-primary btn-sm edit"><i class="fas fa-edit fa-sm"></i> Edit</button></td>
-      //       <td class="text-center"><button value="${contactIndex}" class="btn btn-danger btn-sm delete"><i class="fas fa-trash-alt fa-sm"></i> Delete</button></td>
-      //       </tr>`;
-
-      //       contactIndex++;
-      //     }
-
-      //    // console.log(dataString);
-      //   }
-      // });
     }
 
     function displayEdit()
@@ -323,58 +282,59 @@
     {
       if(sessionStorage.getItem("user"))
       {
-                // return to the contact list
-                location.href = "contact-list.html";
+        location.href = "contact-list.html";
       }
 
       let messageArea = $("#messageArea");
       messageArea.hide();
+
       $("#loginButton").on("click", (event)=> 
       {
-       let username = $("#username").val();
-       let password = $("#password").val();
-       let success = false;
+        let username = $("#username").val();
+        let password = $("#password").val();
+        let success = false;
 
-       $.getJSON("./Data/users.json", function(data)
-       {
-         let newUser = new core.User();
-         // search for username and password
-          for (const user of data.users) 
-          {
-            if(username == user.UserName && password == user.Password)
-            {
-              newUser.fromJSON(user);
-              success = true;
-              break;
-            }
-          }
+        $.getJSON("./Data/users.json", function(data) 
+        {
+          let newUser = new core.User();
 
-          if(success)
-          {
-            // add user to session storage
-            sessionStorage.setItem("user", newUser.serialize());
-            messageArea.removeAttr("class").hide();
+          // search for username and password
+         for (const user of data.users) 
+         {
+           if(username == user.UserName && password == user.Password)
+           {
+             newUser.fromJSON(user);
+             success = true;
+             break;
+           }
+         }
 
-            // go to secure area
-            location.href = "contact-list.html";
-          }
-          else
-          {
+         if(success)
+         {
+           // add user to session storage
+           sessionStorage.setItem("user", newUser.serialize());
+           messageArea.removeAttr("class").hide();
+
+           // go to secure area
+           location.href = "contact-list.html";
+         }
+         else
+         {
             $("#username").trigger("focus").trigger("select");
             messageArea.show().addClass("alert alert-danger").text("Error: Invalid login information.");
-          }
-       });
+         }
+        });
       });
-      
+
       $("#cancelButton").on("click", function()
       {
-        // return to the home page
-        // clear the form data
+        // clear the form
         document.forms[0].reset();
+        // return to the home page
         location.href = "index.html";
-      });
+      })
     }
-    
+  
 
     function displayRegister()
     {
@@ -421,21 +381,62 @@
         {
           if(sessionStorage.getItem("user"))
           {
-            let loginLink = document.getElementById("login");
-            loginLink.innerHTML =
-             `
-             <a class="nav-link" aria-current="page" href="logout.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
-             `;
 
-             $("#logout").on("click", function()
-             {
-               // perform logout
-               sessionStorage.clear();
-               // redirect to login page
-               location.href = "login.html";
-             });
+            let loginLink = document.getElementById("login");
+            loginLink.innerHTML = `
+            <a id="logout" class="nav-link" aria-current="page" href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            `;
+
+            $("#logout").on("click", function() 
+            {
+              // perform logout
+              sessionStorage.clear();
+              // redirect back to login
+              location.href = "login.html";
+            });
           }
         }
+
+              // // AJAX Example
+      // // STEP 1 - Create XHR object
+      // let XHR = new XMLHttpRequest();
+
+      // // STEP 2 - Open the Request
+      // XHR.open("GET", "./Data/data.json");
+
+      // // STEP 3 - Send information to the server
+      // XHR.send();
+
+      // // STEP 4 - Create an event listener / handler
+      // XHR.addEventListener("readystatechange", function()
+      // {
+      //   // STEP 5 - Ensure that the server ReadyState is 4 and the server status is 200
+      //   if(XHR.readyState === 4 && XHR.status === 200)
+      //   {
+      //     let contactListData = JSON.parse(XHR.responseText);
+      //     let dataString = "";
+      //     let contactIndex = 1;
+
+      //     for (const contact of contactListData.contacts)
+      //     {
+      //       let newContact = new core.Contact();
+      //       newContact.fromJSON(newContact);
+
+      //       dataString += `<tr>
+      //       <th scope="row" class="text-center">${contactIndex}</th>
+      //       <td>${contact.FullName}</td>
+      //       <td>${contact.ContactNumber}</td>
+      //       <td>${contact.EmailAddress}</td>
+      //       <td class="text-center"><button value="${contactIndex}" class="btn btn-primary btn-sm edit"><i class="fas fa-edit fa-sm"></i> Edit</button></td>
+      //       <td class="text-center"><button value="${contactIndex}" class="btn btn-danger btn-sm delete"><i class="fas fa-trash-alt fa-sm"></i> Delete</button></td>
+      //       </tr>`;
+
+      //       contactIndex++;
+      //     }
+
+      //    // console.log(dataString);
+      //   }
+      // });
         
     }
 
