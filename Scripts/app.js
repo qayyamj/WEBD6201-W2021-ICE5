@@ -54,7 +54,7 @@
         // update / modification
         //mainContent.firstElementChild.textContent = "Welcome Home!";
 
-        mainContent.innerHTML = `<h1 id="firstHeading">Welcome to WEBD6201 - ICE 5</h1>
+        mainContent.innerHTML = `<h1 id="firstHeading">Welcome to WEBD6201 - ICE 6</h1>
          <p id="paragraphOne" class="fs-3 fw-bold">This is my first Paragraph</p>
         `;
         
